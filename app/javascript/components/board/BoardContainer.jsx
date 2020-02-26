@@ -7,3 +7,5 @@ class BoardContainer extends Component {
     return <Board />;
   }
 }
+
+export default BoardContainer;
