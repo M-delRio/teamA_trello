@@ -2,13 +2,14 @@ import React from 'react'
 import Header from './Header'
 import ListContainer from '../list/ListContainer'
 
-const Board = props => {
+const Board = ({ board }) => {
+  console.log(board)
   return (
     <div>
-      <Header />
+      <Header title={board.title} />
 
       <main>
-        <ListContainer />
+        <ListContainer board={board} />
       </main>
       <div className="menu-sidebar">
         <div id="menu-main" className="main slide">

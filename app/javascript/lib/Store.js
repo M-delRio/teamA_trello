@@ -1,15 +1,21 @@
 import { createStore as cs, applyMiddleware, compose } from 'redux';
+import { combineReducers } from "redux";
+
 import ReduxThunk from 'redux-thunk';
+import boards from '../reducers/BoardsReducer';
+import lists from '../reducers/ListsReducer'
+import cards from '../reducers/CardsReducer'
 
-import boardsReducer from '../reducers/BoardsReducer';
 
-function reducer(state = {}, action) {
-  return {
-    boards: boardsReducer(state.boards, action)
-  };
-}
+
+const reducers = combineReducers({
+  boards,
+  lists,
+  cards
+})
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export function createStore(initialState = {}) {
-  return cs(reducer, initialState, composeEnhancers(applyMiddleware(ReduxThunk)));
+  return cs(reducers, initialState, composeEnhancers(applyMiddleware(ReduxThunk)));
 }
+
