@@ -3,7 +3,7 @@ import React from 'react'
 const Header = props => (
   <header>
     <ul>
-      <li id="title">My Title</li>
+      <li id="title">{props.title}</li>
       <li className="star-icon icon"></li>
       <li className="private private-icon icon">Private</li>
     </ul>

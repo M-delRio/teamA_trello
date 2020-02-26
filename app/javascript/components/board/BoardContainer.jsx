@@ -4,8 +4,9 @@ import Board from "./Board";
 import * as actions from '../../actions/BoardActions';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state)
   return {
-    board: state.boards.filter(board => board.id === +ownProps.match.params.id)
+    board: state.boards.filter(board => board.id === +ownProps.match.params.id)[0]
   }
 }
 
