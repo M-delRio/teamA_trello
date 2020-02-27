@@ -4,7 +4,7 @@ class Api::ListsController < ApplicationController
         @list = List.new(list_params.merge(board: board))
 
         if @list.save
-            return :create
+            render :create
         else
             @error = @list.errors.full_messages.join(', ')
             render 'api/shared/error', status: :unprocessable_entity
@@ -18,7 +18,7 @@ class Api::ListsController < ApplicationController
         @list = List.find(params[:id])
 
         if @list.update(list_params)
-            return :update
+            render :update
         else
             @error = @list.errors.full_messages.join(', ')
             render 'api/shared/error', status: :unprocessable_entity
