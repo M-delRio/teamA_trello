@@ -14,10 +14,10 @@ board1 = Board.create title: "First board"
 list1 = List.create title: "first list", board: board1
 list2 = List.create title: "second list", board: board1
 
-card1 = Card.create title: "first card", description: "Research ffmpeg", due_date: "2017-10-06T23:08:28.375Z", list: list1
-card2 = Card.create title: "second card", description: "Spin up Lambdas", due_date: "2017-10-06T23:08:28.375Z", list: list1
-card3 = Card.create title: "third card", description: "Contact exCamera crew", due_date: "2017-10-06T23:08:28.375Z", list: list2
-card4 = Card.create title: "fourth card", description: "Look into mu framework", due_date: "2017-10-06T23:08:28.375Z", list: list2
-card5 = Card.create title: "fifth card", description: "Complete feasablility testing", due_date: "2017-10-06T23:08:28.375Z", list: list2
+card1 = Card.create title: "first card", description: "Research ffmpeg", due_date: "2017-10-06T23:08:28.375Z", list: list1, labels: ["red", "blue"]
+card2 = Card.create title: "second card", description: "Spin up Lambdas", due_date: "2017-10-06T23:08:28.375Z", list: list1, labels: ["red", "green", "yellow"]
+card3 = Card.create title: "third card", description: "Contact exCamera crew", due_date: "2017-10-06T23:08:28.375Z", list: list2, labels: ["red", "blue"]
+card4 = Card.create title: "fourth card", description: "Look into mu framework", due_date: "2017-10-06T23:08:28.375Z", list: list2, labels: []
+card5 = Card.create title: "fifth card", description: nil, due_date: "2017-10-06T23:08:28.375Z", list: list2, labels: ["purple"]
 
 
