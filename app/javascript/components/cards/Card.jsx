@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = () => {
+const Card = ({ card }) => {
   return (
     <div className="card-background">
       <div className="card ">
@@ -13,13 +13,12 @@ const Card = () => {
           <div className="card-label blue colorblindable"></div>
           <div className="card-label purple colorblindable"></div>
           <p>
-            Cards do many cool things. Click on this card to
-            open it and learn more...
+            {card.title}
           </p>
         </div>
         <div className="card-icons">
           <i className="clock-icon sm-icon overdue-recent completed">
-            Aug 4
+            {card.due_date}
           </i>
           <i className="description-icon sm-icon"></i>
           <i className="comment-icon sm-icon"></i>
