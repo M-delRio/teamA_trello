@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import CreateListForm from './CreateListForm';
 
 class CreateListFormContainer extends Component {
-  state = {}
+  state = {
+    title: ''
+  };
+
   render() {
     return (
-      <CreateListForm />
+      <CreateListForm title={this.state.title} />
     );
   }
 }

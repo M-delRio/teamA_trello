@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
-import CreateListFormContainer from './CreateListFormContainer';
-import CreateListTile from './CreateListTile';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/BoardActions';
+
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onCreateList: (title) => {
+      dispatch(actions.createList(title, ownProps.boardId))
+    }
+  }
+}
+
 
 class ToggleableCreateListTile extends Component {
   state = {
     showForm: false,
+    title: ''
   }
 
   handleTileClick = (e) => {
     e.preventDefault();
-
     this.setState({
       showForm: true
     });
@@ -24,30 +34,44 @@ class ToggleableCreateListTile extends Component {
   }
 
   handleSave = () => {
+    this.props.onCreateList(this.state.title);
+
     this.setState({
+      title: '',
       showForm: false
     });
   };
 
+  handleChange = (e) => {
+    e.preventDefault();
+    this.setState({
+      title: e.target.value,
+    })
+  }
+
   render() {
-    if (this.state.showForm) {
-      return (
-        <div id="new-list" className="new-list">
-          <CreateListFormContainer
-            onCloseClick={this.handleFormCloseClick}
-            onSave={this.handleSave}
-          />
+    return (
+      <div id="new-list"
+        className={`new-list ${this.state.showForm ? 'selected' : null}`}
+      >
+        <span
+          onClick={this.handleTileClick}>
+          Add a list...</span>
+        <input
+          type="text"
+          placeholder="Add a list..."
+          value={this.state.title}
+          onChange={this.handleChange} />
+        <div>
+          <input
+            onClick={this.handleSave}
+            type="submit" className="button"
+            value="Save" />
+          <i onClick={this.handleFormCloseClick} className="x-icon icon"></i>
         </div>
-      )
-    } else {
-      return (
-        <div id="new-list" className="new-list">
-          <CreateListTile
-            onClick={this.handleTileClick} />
-        </div>
-      )
-    }
+      </div>
+    )
   }
 }
 
-export default ToggleableCreateListTile;
+export default connect(null, mapDispatchToProps)(ToggleableCreateListTile);

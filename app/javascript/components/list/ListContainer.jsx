@@ -4,8 +4,9 @@ import ToggleableCreateListTile from './ToggleableCreateListTile';
 import { connect } from "react-redux";
 
 
-const mapStateToProps = (state) => ({
-  lists: state.lists
+const mapStateToProps = (state, ownProps) => ({
+  lists: state.lists,
+  boardId: ownProps.board.id
 })
 
 
@@ -15,7 +16,7 @@ class ListContainer extends Component {
     return (
       <div id="list-container" className="list-container">
         <ExistingLists lists={this.props.lists} />
-        <ToggleableCreateListTile />
+        <ToggleableCreateListTile boardId={this.props.boardId} />
       </div>
     );
   }
