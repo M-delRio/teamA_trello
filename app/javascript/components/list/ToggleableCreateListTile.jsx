@@ -34,6 +34,9 @@ class ToggleableCreateListTile extends Component {
   }
 
   handleSave = () => {
+    if (this.state.title === '') {
+      return;
+    }
     this.props.onCreateList(this.state.title);
 
     this.setState({
@@ -65,8 +68,10 @@ class ToggleableCreateListTile extends Component {
         <div>
           <input
             onClick={this.handleSave}
-            type="submit" className="button"
-            value="Save" />
+            type="submit"
+            className="button"
+            value="Save"
+            disabled={this.state.title === '' ? true : null} />
           <i onClick={this.handleFormCloseClick} className="x-icon icon"></i>
         </div>
       </div>
