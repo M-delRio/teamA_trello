@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ExistingLists from './ExistingLists';
-import ToggleableNewList from './ToggleableNewList';
+import ToggleableCreateListTile from './ToggleableCreateListTile';
 import { connect } from "react-redux";
 
 
@@ -15,7 +15,7 @@ class ListContainer extends Component {
     return (
       <div id="list-container" className="list-container">
         <ExistingLists lists={this.props.lists} />
-        <ToggleableNewList />
+        <ToggleableCreateListTile />
       </div>
     );
   }
