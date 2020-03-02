@@ -5,8 +5,8 @@ import * as actions from '../../actions/BoardActions';
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onCreateList: (title) => {
-      dispatch(actions.createList(title, ownProps.boardId))
+    onCreateList: (title, cb) => {
+      dispatch(actions.createList(title, ownProps.boardId, cb))
     }
   }
 }
@@ -37,12 +37,14 @@ class ToggleableCreateListTile extends Component {
     if (this.state.title === '') {
       return;
     }
-    this.props.onCreateList(this.state.title);
-
-    this.setState({
-      title: '',
-      showForm: false
+    this.props.onCreateList(this.state.title, () => {
+      this.setState({
+        title: '',
+        showForm: false
+      });
     });
+
+
   };
 
   handleChange = (e) => {

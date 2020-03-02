@@ -54,10 +54,14 @@ export function createBoard(board, callback) {
   }
 }
 
-export function createList(title, boardId) {
+export function createList(title, boardId, cb) {
   return function (dispatch) {
     apiClient.createList(title, boardId, newList => {
       dispatch(createListSuccess(newList))
+      if (cb) {
+        cb();
+      }
     })
+
   }
 }
