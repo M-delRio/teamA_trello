@@ -1,12 +1,12 @@
-import apiClient from '../lib/ApiClient';
-import * as types from '../constants/ActionTypes';
+import apiClient from "../lib/ApiClient";
+import * as types from "../constants/ActionTypes";
 
 export function fetchBoardsRequest() {
   return { type: types.FETCH_BOARDS_REQUEST };
 }
 
 export function fetchBoardRequest() {
-  return { type: types.FETCH_BOARD_REQUEST }
+  return { type: types.FETCH_BOARD_REQUEST };
 }
 
 export function fetchBoardsSuccess(boards) {
@@ -26,42 +26,58 @@ export function createBoardSuccess(board) {
 }
 
 export function createListSuccess(list) {
-  return { type: types.CREATE_LIST_SUCCESS, list }
+  return { type: types.CREATE_LIST_SUCCESS, list };
+}
+
+export function editListSuccess(list) {
+  return { type: types.EDIT_LIST_SUCCESS, list };
 }
 
 export function fetchBoards() {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(fetchBoardsRequest());
     apiClient.getBoards(boards => dispatch(fetchBoardsSuccess(boards)));
   };
 }
 
 export function fetchBoard(boardId) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(fetchBoardRequest());
-    apiClient.getBoard(boardId, board => dispatch(fetchBoardSuccess(board)))
-  }
+    apiClient.getBoard(boardId, board => dispatch(fetchBoardSuccess(board)));
+  };
 }
 
 export function createBoard(board, callback) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(createBoardRequest());
     apiClient.createBoard(board, newBoard => {
-      dispatch(createBoardSuccess(newBoard))
+      dispatch(createBoardSuccess(newBoard));
 
-      if (callback) { callback(newBoard); }
-    })
-  }
+      if (callback) {
+        callback(newBoard);
+      }
+    });
+  };
 }
 
 export function createList(title, boardId, cb) {
-  return function (dispatch) {
+  return function(dispatch) {
     apiClient.createList(title, boardId, newList => {
-      dispatch(createListSuccess(newList))
+      dispatch(createListSuccess(newList));
       if (cb) {
         cb();
       }
-    })
+    });
+  };
+}
 
-  }
+export function editList(title, listId, callback) {
+  return function(dispatch) {
+    apiClient.editList(title, listId, updatedList => {
+      dispatch(editListSuccess(updatedList));
+      if (callback) {
+        callback();
+      }
+    });
+  };
 }

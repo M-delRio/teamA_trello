@@ -1,5 +1,5 @@
-import axios from 'axios';
-import * as routes from '../constants/ApiRoutes';
+import axios from "axios";
+import * as routes from "../constants/ApiRoutes";
 
 function logError(errorResponse) {
   const response = errorResponse.response;
@@ -15,40 +15,51 @@ function unwrapData(response) {
   return response.data;
 }
 
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+axios.defaults.headers.common["Accept"] = "application/json";
 
 const apiClient = {
-  getBoards: function (callback) {
-    return axios.get(routes.BOARDS_INDEX_URL)
+  getBoards: function(callback) {
+    return axios
+      .get(routes.BOARDS_INDEX_URL)
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
-  createBoard: function (board, callback) {
-    return axios.post(routes.CREATE_BOARD_URL, { board })
+  createBoard: function(board, callback) {
+    return axios
+      .post(routes.CREATE_BOARD_URL, { board })
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
-  getBoard: function (id, callback) {
-    return axios.get(routes.SHOW_BOARD_URL + id)
+  getBoard: function(id, callback) {
+    return axios
+      .get(routes.SHOW_BOARD_URL + id)
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
-  createList: function (title, boardId, callback) {
+  createList: function(title, boardId, callback) {
     const listJson = {
       board_id: boardId,
       list: {
-        title: title,
+        title: title
       }
-    }
-    return axios.post(routes.CREATE_LIST_URL, listJson)
+    };
+    return axios
+      .post(routes.CREATE_LIST_URL, listJson)
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
+  editList: function(title, listId, callback) {
+    return axios
+      .put(routes.EDIT_LIST_URL + listId, { title })
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  }
 };
 
 export default apiClient;

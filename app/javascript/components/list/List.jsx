@@ -1,5 +1,6 @@
-import React from 'react';
-import CardsContainer from '../cards/CardsContainer';
+import React from "react";
+import CardsContainer from "../cards/CardsContainer";
+import EditableListTitle from "./EditableListTitle";
 
 const List = ({ list }) => {
   return (
@@ -7,9 +8,7 @@ const List = ({ list }) => {
       <div className="list-background">
         <div className="list">
           <a className="more-icon sm-icon" href=""></a>
-          <div>
-            <p className="list-title">{list.title}</p>
-          </div>
+          <div>{<EditableListTitle list={list} />}</div>
           <div className="add-dropdown add-top">
             <div className="card"></div>
             <a className="button">Add</a>
@@ -33,11 +32,11 @@ const List = ({ list }) => {
           </div>
           <div className="add-card-toggle" data-position="bottom">
             Add a card...
-  </div>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default List;

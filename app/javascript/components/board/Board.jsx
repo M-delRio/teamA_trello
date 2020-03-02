@@ -1,9 +1,9 @@
-import React from 'react'
-import Header from './Header'
-import ListContainer from '../list/ListContainer'
+import React from "react";
+import Header from "./Header";
+import ListContainer from "../list/ListContainer";
 
 const Board = ({ board }) => {
-  console.log(board)
+  console.log(board);
   return (
     <div>
       <Header title={board.title} />
@@ -35,11 +35,17 @@ const Board = ({ board }) => {
             <ul className="menu-list">
               <li className="background-item">Change Background</li>
               <li className="filter-icon menu-icon">Filter Cards</li>
-              <li className="power-icon menu-icon not-implemented">Power-Ups</li>
-              <li className="stickers-icon menu-icon not-implemented">Stickers</li>
+              <li className="power-icon menu-icon not-implemented">
+                Power-Ups
+              </li>
+              <li className="stickers-icon menu-icon not-implemented">
+                Stickers
+              </li>
               <li className="more-icon menu-icon">More</li>
               <hr />
-              <li className="activity-icon menu-icon not-implemented">Activity</li>
+              <li className="activity-icon menu-icon not-implemented">
+                Activity
+              </li>
             </ul>
             <ul className="activity-list">
               <li>
