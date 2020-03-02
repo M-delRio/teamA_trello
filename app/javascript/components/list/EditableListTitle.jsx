@@ -23,22 +23,19 @@ class EditableListTitle extends Component {
     });
   };
 
-  handleFormCloseClick = e => {
-    e.preventDefault();
-
+  handleFormClose = () => {
     this.setState({
       showForm: false
     });
   };
 
   handleSave = () => {
-    if (this.state.title === "") {
+    if (this.state.title.trim() === "") {
+      this.handleFormClose();
       return;
     }
     this.props.onEditList(this.state.title, () => {
-      this.setState({
-        showForm: false
-      });
+      this.handleFormClose();
     });
   };
 
