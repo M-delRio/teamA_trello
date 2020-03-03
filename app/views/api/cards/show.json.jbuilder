@@ -1,5 +1,8 @@
 json.merge! @card.attributes
 json.board_id(@card.list.board_id)
+json.actions @card.card_actions do |action|
+    json.merge! action.attributes
+end
 
 
 # {
