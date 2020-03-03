@@ -33,22 +33,26 @@ export function editListSuccess(list) {
   return { type: types.EDIT_LIST_SUCCESS, list };
 }
 
+export function createCardSuccess(card) {
+  return { type: types.CREATE_CARD_SUCCESS, card };
+}
+
 export function fetchBoards() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(fetchBoardsRequest());
     apiClient.getBoards(boards => dispatch(fetchBoardsSuccess(boards)));
   };
 }
 
 export function fetchBoard(boardId) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(fetchBoardRequest());
     apiClient.getBoard(boardId, board => dispatch(fetchBoardSuccess(board)));
   };
 }
 
 export function createBoard(board, callback) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(createBoardRequest());
     apiClient.createBoard(board, newBoard => {
       dispatch(createBoardSuccess(newBoard));
@@ -60,19 +64,19 @@ export function createBoard(board, callback) {
   };
 }
 
-export function createList(title, boardId, cb) {
-  return function(dispatch) {
+export function createList(title, boardId, callback) {
+  return function (dispatch) {
     apiClient.createList(title, boardId, newList => {
       dispatch(createListSuccess(newList));
-      if (cb) {
-        cb();
+      if (callback) {
+        callback();
       }
     });
   };
 }
 
 export function editList(title, listId, callback) {
-  return function(dispatch) {
+  return function (dispatch) {
     apiClient.editList(title, listId, updatedList => {
       dispatch(editListSuccess(updatedList));
       if (callback) {
@@ -80,4 +84,15 @@ export function editList(title, listId, callback) {
       }
     });
   };
+}
+
+export function createCard(title, listId, callback) {
+  return function (dispatch) {
+    apiClient.createCard(title, listId, newCard => {
+      dispatch(createCardSuccess(newCard));
+      if (callback) {
+        callback();
+      }
+    });
+  }
 }

@@ -9,6 +9,8 @@ export default function cardsReducer(state = [], action) {
         },
         []
       )
+    case types.CREATE_CARD_SUCCESS:
+      return state.concat(action.card);
   }
   return state;
 }

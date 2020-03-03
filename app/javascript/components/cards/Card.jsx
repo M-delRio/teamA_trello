@@ -18,9 +18,10 @@ const Card = ({ card }) => {
           <p>{card.title}</p>
         </div>
         <div className="card-icons">
-          <i className="clock-icon sm-icon overdue-recent completed">
-            {moment(card.due_date).format("MMM Do")}
-          </i>
+          {card.due_date ? (
+            <i className="clock-icon sm-icon overdue-recent completed">
+              {moment(card.due_date).format("MMM Do")}
+            </i>) : null}
           {card.description ? (
             <i className="description-icon sm-icon"></i>
           ) : null}
