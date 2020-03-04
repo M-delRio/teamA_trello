@@ -101,10 +101,13 @@ export function createCard(title, listId, callback) {
   }
 }
 
-export function fetchCard(cardId) {
+export function fetchCard(cardId, callback) {
   return function (dispatch) {
     apiClient.getCard(cardId, card => {
       dispatch(fetchCardSuccess(card));
+      if (callback) {
+        callback(card)
+      }
     })
   }
 }

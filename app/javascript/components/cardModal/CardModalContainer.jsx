@@ -12,7 +12,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchtoProps = (dispatch, ownProps) => {
   return {
     onFetchCard: (id) => {
-      dispatch(actions.fetchCard(id));
+      dispatch(actions.fetchCard(id), (card) => {
+        dispatch(actions.fetchBoard(card.board_id))
+      });
     }
   }
 }

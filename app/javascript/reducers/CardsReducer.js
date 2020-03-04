@@ -11,6 +11,7 @@ export default function cardsReducer(state = [], action) {
       )
     case types.CREATE_CARD_SUCCESS:
       return state.concat(action.card);
+
     case types.FETCH_CARD_SUCCESS:
       const foundCard = state.find(card => card.id === action.card.id);
       if (foundCard) {
