@@ -25,10 +25,7 @@ class CardModalContainer extends Component {
 
 
   render() {
-    if (this.props.card) {
-      console.log(this.props.card, this.props.card.board_id);
-    }
-    return <CardModal />
+    return this.props.card ? <CardModal card={this.props.card} /> : null
   }
 }
 
