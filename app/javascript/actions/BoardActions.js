@@ -37,6 +37,10 @@ export function createCardSuccess(card) {
   return { type: types.CREATE_CARD_SUCCESS, card };
 }
 
+export function fetchCardSuccess(card) {
+  return { type: types.FETCH_CARD_SUCCESS, card };
+}
+
 export function fetchBoards() {
   return function (dispatch) {
     dispatch(fetchBoardsRequest());
@@ -94,5 +98,13 @@ export function createCard(title, listId, callback) {
         callback();
       }
     });
+  }
+}
+
+export function fetchCard(cardId) {
+  return function (dispatch) {
+    apiClient.getCard(cardId, card => {
+      dispatch(fetchCardSuccess(card));
+    })
   }
 }

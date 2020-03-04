@@ -6,7 +6,7 @@ import TopNav from "./shared/TopNav";
 import BoardsDashboardContainer from "./dashboard/BoardsDashboardContainer";
 import BoardContainer from "./board/BoardContainer";
 
-import { fetchBoards } from "../actions/BoardActions";
+import CardModalContainer from "./cardModal/CardModalContainer";
 
 class Application extends React.Component {
   static contextTypes = {
@@ -23,16 +23,23 @@ class Application extends React.Component {
   }
 
   render() {
-    const state = this.context.store.getState();
 
     return (
       <div>
         <TopNav />
         <Route path="/" exact component={BoardsDashboardContainer} />
-        <Route path="/boards/:id" component={BoardContainer} />
+        <Route path="/(boards|cards)/:id" component={BoardContainer} />
+        <Route path="/cards/:id" component={CardModalContainer} />
       </div>
     );
   }
 }
 
 export default Application;
+
+/*
+When you render /cards/:id, BoardContainer is also rendered
+I BoardContainer, we use the :id to get the board
+... However if path is /cards, then we want to get the board id from the card, not the path
+
+*/
