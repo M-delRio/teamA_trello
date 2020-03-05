@@ -7,13 +7,17 @@ const CardDetails = ({ card }) => {
       <ul className="modal-details-list">
         <li className="labels-section">
           <h3>Labels</h3>
+
           {card.labels.map(label => {
             return (
-              <div className="member-container">
+              <div className="member-container" key={`${card.id}${label}`}>
                 <div className={`${label} label colorblindable`}></div>
               </div>
             );
           })}
+          <div className="member-container">
+            <i className="plus-icon sm-icon"></i>
+          </div>
         </li>
         {card.due_date ? (
           <li className="due-date-section">
@@ -36,7 +40,7 @@ const CardDetails = ({ card }) => {
           Edit
         </span>
         <p className="textarea-overlay">
-          Cards have a symbol to indicate if they contain a description.
+          {card.description ? card.description : ""}
         </p>
         <p id="description-edit-options" className="hidden">
           You have unsaved edits on this field.{" "}
