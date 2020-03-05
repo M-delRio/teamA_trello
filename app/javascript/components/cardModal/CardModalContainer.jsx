@@ -12,9 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchtoProps = (dispatch, ownProps) => {
   return {
     onFetchCard: (id) => {
-      dispatch(actions.fetchCard(id), (card) => {
-        dispatch(actions.fetchBoard(card.board_id))
-      });
+      dispatch(actions.fetchCard(id));
     }
   }
 }
@@ -22,7 +20,7 @@ const mapDispatchtoProps = (dispatch, ownProps) => {
 class CardModalContainer extends Component {
 
   componentDidMount() {
-    this.props.onFetchCard(this.props.match.params.id);
+    this.props.onFetchCard(+this.props.match.params.id);
   }
 
 
