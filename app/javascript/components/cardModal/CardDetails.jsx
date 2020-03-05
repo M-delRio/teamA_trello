@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 const CardDetails = ({ card }) => {
   return (
@@ -14,18 +15,20 @@ const CardDetails = ({ card }) => {
             );
           })}
         </li>
-        <li className="due-date-section">
-          <h3>Due Date</h3>
-          <div id="dueDateDisplay" className="overdue completed">
-            <input
-              id="dueDateCheckbox"
-              type="checkbox"
-              className="checkbox"
-              checked=""
-            />
-            Aug 4 at 10:42 AM <span>(past due)</span>
-          </div>
-        </li>
+        {card.due_date ? (
+          <li className="due-date-section">
+            <h3>Due Date</h3>
+            <div id="dueDateDisplay" className="overdue completed">
+              <input
+                id="dueDateCheckbox"
+                type="checkbox"
+                className="checkbox"
+                checked=""
+              />
+              {moment(card.due_date).format("MMM Do")} <span>(past due)</span>
+            </div>
+          </li>
+        ) : null}
       </ul>
       <form className="description">
         <p>Description</p>
