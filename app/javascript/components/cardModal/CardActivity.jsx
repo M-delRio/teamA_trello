@@ -1,9 +1,15 @@
 import React from "react";
 import CardComment from "./CardComment";
 import CardAction from "./CardAction";
+import { connect } from "react-redux";
 
-const CardActivity = ({ card }) => {
-  console.log(card);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    comments: state.comments.filter(comment => comment.card_id === ownProps.card.id)
+  }
+}
+
+const CardActivity = ({ card, comments }) => {
   return (
     <li className="activity-section">
       <h2 className="activity-icon icon">Activity</h2>
@@ -12,10 +18,10 @@ const CardActivity = ({ card }) => {
       </ul>
       <ul className="modal-activity-list">
         {card.actions.map(action => (<CardAction action={action} key={action.id} />))}
-        {card.comments.map(comment => (<CardComment comment={comment} key={comment.id} />))}
+        {comments.map(comment => (<CardComment comment={comment} key={comment.id} />))}
       </ul>
     </li>
   );
 };
 
-export default CardActivity;
+export default connect(mapStateToProps)(CardActivity);

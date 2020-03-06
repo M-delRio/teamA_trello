@@ -8,7 +8,7 @@ const CardMain = ({ card }) => {
     <section className="modal-main">
       <ul className="modal-outer-list">
         <CardDetails card={card} />
-        <CardCommentsForm />
+        <CardCommentsForm card={card} />
         <CardActivity card={card} />
       </ul>
     </section>

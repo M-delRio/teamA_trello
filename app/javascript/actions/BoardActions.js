@@ -37,6 +37,10 @@ export function createCardSuccess(card) {
   return { type: types.CREATE_CARD_SUCCESS, card };
 }
 
+export function createCommentSuccess(comment) {
+  return { type: types.CREATE_COMMENT_SUCCESS, comment };
+}
+
 export function fetchCardSuccess(card) {
   return { type: types.FETCH_CARD_SUCCESS, card };
 }
@@ -98,6 +102,14 @@ export function createCard(title, listId, callback) {
         callback();
       }
     });
+  }
+}
+
+export function createComment(commentText, cardId) {
+  return function (dispatch) {
+    apiClient.createComment(commentText, cardId, newComment => {
+      dispatch(createCommentSuccess(newComment));
+    })
   }
 }
 

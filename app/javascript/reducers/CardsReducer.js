@@ -22,10 +22,12 @@ export default function cardsReducer(state = [], action) {
 
     case types.FETCH_CARD_SUCCESS:
       const foundCard = state.find(card => card.id === action.card.id);
+      const { comments, ...cardWithoutComments } = action.card
+
       if (foundCard) {
-        return state.map(card => card.id === action.card.id ? action.card : card)
+        return state.map(card => card.id === cardWithoutComments.id ? cardWithoutComments : card)
       } else {
-        return state.concat(action.card);
+        return state.concat(cardWithoutComments);
       }
   }
   return state;
