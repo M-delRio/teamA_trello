@@ -7,7 +7,7 @@ const CardAction = ({ action }) => {
                 <div className="card-member small-size">VR</div>
             </div>
             <p>
-                <span className="member-name">Victor Reyes</span>{action.description}<small>yesterday at 4:53 PM</small>
+                <span className="member-name">Victor Reyes</span>{` ${action.description} `}<small>yesterday at 4:53 PM</small>
             </p>
         </li>
     )

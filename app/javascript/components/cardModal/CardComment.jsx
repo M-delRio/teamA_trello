@@ -1,6 +1,7 @@
 import React from "react";
+import moment from 'moment';
 
-let CardComment = () => {
+let CardComment = ({ comment }) => {
   return (
     <li>
       <div className="member-container">
@@ -9,10 +10,10 @@ let CardComment = () => {
 
       <h3>Taylor Peat</h3>
       <div className="comment static-comment">
-        <span>The activities are not functional.</span>
+        <span>{comment.text}</span>
       </div>
       <small>
-        22 minutes ago - <span className="link">Edit</span> -{" "}
+        {moment(moment(comment.created_at).format("MMM Do YY"), "MMM Do YY").fromNow()}- <span className="link">Edit</span> -{" "}
         <span className="link">Delete</span>
       </small>
       <div className="comment">
