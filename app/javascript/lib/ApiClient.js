@@ -67,7 +67,6 @@ const apiClient = {
         title: title
       }
     };
-    console.log("from api client")
     return axios
       .post(routes.CREATE_CARD_URL, cardJson)
       .then(unwrapData)

@@ -13,9 +13,7 @@ const mapStateToProps = (state, ownProps) => {
   } else {
     card = state.cards.find(card => card.id === +ownProps.match.params.id);
     if (card) {
-      console.log("in mapStateToProps", card)
       boardId = card.board_id;
-      console.log(boardId)
     } else {
       boardId = null;
     }
@@ -38,7 +36,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchBoard: (boardId, callback) => {
-      console.log('fetching board ', boardId)
       dispatch(actions.fetchBoard(boardId, callback));
     }
   };
@@ -65,13 +62,11 @@ class BoardContainer extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.boardId !== prevProps.boardId) {
-      console.log('in conditional ', this.props.boardId)
       this.props.onFetchBoard(+this.props.boardId);
     }
   }
 
   render() {
-    console.log(this.props.board)
     if (this.props.board) {
       return <Board board={this.props.board} />;
     } else {

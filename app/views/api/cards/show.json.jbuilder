@@ -2,7 +2,10 @@ json.merge! @card.attributes
 json.actions @card.card_actions do |action|
     json.merge! action.attributes
 end
-
+json.comments @card.comments do |comment|
+    json.merge! comment.attributes
+end
+json.comments_count @card.comments.count
 
 # {
 #   "id": 9,

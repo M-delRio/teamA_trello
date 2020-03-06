@@ -20,4 +20,6 @@ card3 = Card.create title: "third card", description: "Contact exCamera crew", d
 card4 = Card.create title: "fourth card", description: "Look into mu framework", due_date: "2017-10-06T23:08:28.375Z", list: list2, labels: []
 card5 = Card.create title: "fifth card", description: nil, due_date: "2017-10-06T23:08:28.375Z", list: list2, labels: ["purple"]
 
-
+comment1 = Comment.create card: card1 , text: "A comment"
+comment2 = Comment.create card: card2 , text: "Another comment"
+comment3 = Comment.create card: card3 , text: "A new comment"

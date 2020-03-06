@@ -26,7 +26,6 @@ class BoardsDashboardContainer extends React.Component {
   }
 
   render() {
-    console.log(this.allBoards())
     return (
       <div>
         <BoardsDashboard boards={this.allBoards()} />

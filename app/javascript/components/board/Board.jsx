@@ -3,7 +3,6 @@ import Header from "./Header";
 import ListContainer from "../list/ListContainer";
 
 const Board = ({ board }) => {
-  console.log(board);
   return (
     <div>
       <Header title={board.title} />

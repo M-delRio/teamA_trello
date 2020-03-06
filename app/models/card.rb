@@ -1,5 +1,6 @@
 class Card < ApplicationRecord
   has_many :card_actions, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :list
   
   def board_id
